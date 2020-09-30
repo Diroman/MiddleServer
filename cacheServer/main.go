@@ -18,6 +18,8 @@ func cached(w http.ResponseWriter, r *http.Request) {
 	path := r.URL.Path
 	isCSS := strings.Index(r.URL.Path, ".css") != -1
 	isMainPage := r.URL.Path == "/"
+
+	// TODO: return save fragment info file
 	isVideoInfoFile := (strings.Index(r.URL.Path, ".ts") == -1) &&
 		(strings.Index(r.URL.Path, "watch") != -1)
 
@@ -48,7 +50,7 @@ func cached(w http.ResponseWriter, r *http.Request) {
 			storageTime = 5 * time.Second
 		}
 
-		cache.Set(path, value, storageTime)
+		cache.Set(path, value)
 	}
 
 	if isCSS {

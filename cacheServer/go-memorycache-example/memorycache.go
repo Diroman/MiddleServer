@@ -4,7 +4,6 @@ import (
 	"io/ioutil"
 	"log"
 	"strings"
-	"time"
 )
 
 type Cache struct {}
@@ -13,7 +12,7 @@ func New() *Cache {
 	return &Cache{}
 }
 
-func (c *Cache) Set(key string, value []byte, duration time.Duration) {
+func (c *Cache) Set(key string, value []byte) {
 	path := strings.Replace(key, "/", "_", -1)
 	if err := ioutil.WriteFile("cache/" + path, value, 0644); err != nil {
 		log.Println(err)
